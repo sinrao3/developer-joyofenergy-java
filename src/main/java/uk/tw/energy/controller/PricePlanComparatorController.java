@@ -61,8 +61,7 @@ public class PricePlanComparatorController {
         }
 
         List<Map.Entry<String, BigDecimal>> recommendations = new ArrayList<>(consumptionsForPricePlans.get().entrySet());
-        recommendations.sort(Comparator.comparing(Map.Entry::getValue));
-
+        recommendations.sort(Comparator.comparing((Map.Entry<String, BigDecimal> entry) -> entry.getValue()).reversed());
         if (limit != null && limit < recommendations.size()) {
             recommendations = recommendations.subList(0, limit);
         }
